@@ -1,9 +1,14 @@
-FROM golang:latest
+FROM ubuntu:latest
+MAINTAINER Ramon Tayag <ramon.tayag@gmail.com>
 
-RUN go get github.com/constabulary/gb/...
+RUN apt-get update -qq && \
+  apt-get upgrade -y && \
+  apt-get install -y ca-certificates
+ENV APP_DIR=/app
+ENV PATH=$APP_DIR:$PATH
+RUN mkdir $APP_DIR
+WORKDIR $APP_DIR
+ADD app $APP_DIR
+ADD tmp/bridge $APP_DIR/bridge
 
-RUN mkdir -p /go/src/app
-WORKDIR /go/src/app
-
-COPY . /go/src/app
-RUN gb build
+CMD ["sh", "/app/entrypoint.sh", "bridge"]
