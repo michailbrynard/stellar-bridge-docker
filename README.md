@@ -2,11 +2,6 @@
 
 Get the Stellar Bridge Server up and running in a docker container.
 
-## Requirements
-
- - Docker
- - Docker-compose
-
 ## Docker Tagging Convention
 
 This will follow the version of bridge with the addition of the release number at the end. For example:
