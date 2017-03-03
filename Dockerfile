@@ -17,7 +17,8 @@ ENV BRIDGE_FILENAME=$BRIDGE_BASENAME.tar.gz
 RUN curl -L https://github.com/stellar/bridge-server/releases/download/$BRIDGE_VERSION/$BRIDGE_FILENAME -o $BRIDGE_FILENAME && \
   tar zxf $BRIDGE_FILENAME && \
   mv $BRIDGE_BASENAME/bridge /usr/local/bin && \
-  rm $BRIDGE_FILENAME
+  rm $BRIDGE_FILENAME && \
+  rm -r $BRIDGE_BASENAME
 
 ADD app $APP_DIR
 
