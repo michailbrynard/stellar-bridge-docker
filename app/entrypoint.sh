@@ -2,9 +2,9 @@
 set -e
 
 if [ "$1" = 'bridge' ]; then
-  /app/templater.sh /app/config_bridge.toml.template > /app/config_bridge.toml
+  /app/templater.sh /app/bridge.cfg.template > /app/bridge.cfg
   bridge --migrate-db
-  bridge
+  bridge -config /app/bridge.cfg
 fi
 
 exec "$@"
