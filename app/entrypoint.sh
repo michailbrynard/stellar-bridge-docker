@@ -3,8 +3,10 @@ set -e
 
 if [ "$1" = 'bridge' ]; then
   /app/templater.sh /app/bridge.cfg.template > /app/bridge.cfg
-  bridge --migrate-db --config bridge.cfg
-  bridge --config bridge.cfg
+  # NOTE: unable to specify bridge.cfg
+  # https://github.com/stellar/bridge-server/issues/54
+  bridge --migrate-db
+  bridge
 fi
 
 exec "$@"
