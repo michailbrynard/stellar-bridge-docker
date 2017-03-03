@@ -1,4 +1,4 @@
-FROM ubuntu:latest
+FROM ubuntu:16.10
 MAINTAINER Ramon Tayag <ramon.tayag@gmail.com>
 
 RUN apt-get update -qq && \
