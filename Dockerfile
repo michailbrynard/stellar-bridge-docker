@@ -22,4 +22,4 @@ RUN curl -L https://github.com/stellar/bridge-server/releases/download/$BRIDGE_V
 
 ADD app $APP_DIR
 
-CMD ["sh", "/app/entrypoint.sh", "bridge"]
+CMD ["/app/entrypoint.sh", "bridge"]
