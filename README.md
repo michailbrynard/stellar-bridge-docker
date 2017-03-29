@@ -11,6 +11,8 @@ This will follow the version of bridge with the addition of the release number a
 
 ## Instructions
 
+The only items that can be configured with environment variables in the bridge.cfg file can be found in `app/bridge.cfg.template`. These variables will be replaced by the values of their respective environment variables. See `env.sample`.
+
 ### Run Locally
 
 - Build the docker image: `docker-compose build bridge`
