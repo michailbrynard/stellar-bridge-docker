@@ -4,6 +4,8 @@ MAINTAINER Ramon Tayag <ramon.tayag@gmail.com>
 RUN apt-get update -qq && \
   apt-get upgrade -y && \
   apt-get install -y ca-certificates curl && \
+  # Keep size small
+  apt-get clean && \
   rm -rf /var/lib/apt/lists/*
 ENV APP_DIR=/app
 ENV PATH=$APP_DIR:$PATH
