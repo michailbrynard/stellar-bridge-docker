@@ -11,7 +11,11 @@ This will follow the version of bridge with the addition of the release number a
 
 ## Instructions
 
-The only items that can be configured with environment variables in the bridge.cfg file can be found in `app/bridge.cfg.template`. These variables will be replaced by the values of their respective environment variables. See `env.sample`.
+Put the bridge config file in `config/bridge.cfg`. You can start with `config/bridge.cfg.sample`.
+
+If you want to try it with docker-compose, run `docker-compose up`.
+
+If you're running on Kubernetes, you just need to mount a secret on `/etc/bridge`, so that the `bridge.cfg` file is available at `/etc/bridge/bridge.cfg`.
 
 ### Run Locally
 

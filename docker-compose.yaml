@@ -1,4 +1,4 @@
-version: '2'
+version: '3'
 
 services:
   bridge:
@@ -7,7 +7,8 @@ services:
       - "8001"
     depends_on:
       - db
-    env_file: env
+    volumes:
+      - "./config:/etc/bridge"
   db:
     image: postgres:9.6
     expose:

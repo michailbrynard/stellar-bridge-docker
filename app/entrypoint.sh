@@ -2,9 +2,10 @@
 set -e
 
 if [ "$1" = 'bridge' ]; then
-  /app/templater.sh /app/bridge.cfg.template > /app/bridge.cfg
-  bridge --migrate-db --config /app/bridge.cfg
-  bridge --config /app/bridge.cfg
+  CONFIG_DIR=/etc/bridge
+  CONFIG_FILE=$CONFIG_DIR/bridge.cfg
+  bridge --migrate-db --config $CONFIG_FILE
+  bridge --config $CONFIG_FILE
 fi
 
 exec "$@"
