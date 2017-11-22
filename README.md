@@ -1,34 +1,24 @@
 # Docker-compose setup for Stellar Bridge Server
 
-Get the Stellar Bridge Server up and running in a docker container. This repository may not contain the latest Stellar Bridge Server and is intended more as a quickstart example.
+Get the Stellar Bridge Server up and running in a docker container.
 
-## Requirements
- - Docker
- - Docker-compose
+## Docker Tagging Convention
+
+This will follow the version of bridge with the addition of the release number at the end. For example:
+
+- `v0.0.17.0` (first v0.0.17 release)
+- `v0.0.17.1` (there's a problem with the image; second release)
 
 ## Instructions
-### 1. Build the docker image:
-`docker-compose build bridge`
 
-### 2. Create the config file:
-Create a the file app/bin/config_bridge.toml.  
-`cp config_bridge_example.toml app/bin/config_bridge.toml`
+Put the bridge config file in `config/bridge.cfg`. You can start with `config/bridge.cfg.sample`.
 
-Make sure the MySQL DB IP address matches the static address set in your docker compose file. e.g:
-> url = "root:mysql@tcp(172.16.238.10:3306)/mysql?parseTime=true"
+If you want to try it with docker-compose, run `docker-compose up`.
 
-### 2. Run the bridge server:
-docker-compose up
+If you're running on Kubernetes, you just need to mount a secret on `/etc/bridge`, so that the `bridge.cfg` file is available at `/etc/bridge/bridge.cfg`.
 
-### Optional copy compiled code:
-This repository contains the compiled code in the /app directory, so the following steps are not neccessary:
+### Run Locally
 
-When building the docker container in step one, the code is compiled to /go/src/app/ in the container.
-
-Let's copy this to the /app/ directory on the host machine:
-`docker run -d --name bridge stellarbridgedocker_bridge bash -c "godoc -goroot=. -http=:6060"`  
-`docker cp bridge:/go/src/app/ ./`  
-`docker stop bridge`  
-`docker rm bridge` 
-
-Be sure to repeat step 2 after running this.
+- Build the docker image: `docker-compose build bridge`
+- Copy `env.sample` to `env` and replace variables
+- Run the bridge server: `docker-compose up`
